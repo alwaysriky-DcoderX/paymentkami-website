@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAZRIL GANTENG - Payment Gateway</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #0ff;
+            font-family: 'Share Tech Mono', monospace;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .drop {
+            position: absolute;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, #0ff);
+            animation: rain 1s linear infinite;
+        }
+        
+        @keyframes rain {
+            0% {
+                transform: translateY(-100vh);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid #0ff;
+            box-shadow: 0 0 20px #0ff;
+            margin-top: 50px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, #000, #00f, #800080, #000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 10px;
+            border-bottom: 1px solid #0ff;
+        }
+        
+        .payment-method {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #0ff;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 20, 0.5);
+        }
+        
+        .payment-method h2 {
+            color: #0ff;
+            margin-top: 0;
+            border-bottom: 1px dashed #0ff;
+            padding-bottom: 10px;
+        }
+        
+        .payment-number {
+            font-size: 1.2em;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-left: 3px solid #0ff;
+            word-break: break-all;
+        }
+        
+        .note {
+            background-color: rgba(255, 0, 0, 0.2);
+            padding: 15px;
+            border-left: 3px solid red;
+            margin: 20px 0;
+            color: #fff;
+        }
+        
+        .note strong {
+            color: #ff0;
+        }
+        
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #888;
+        }
+        
+        .typing {
+            border-right: 2px solid #0ff;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #0ff; }
+        }
+    </style>
+</head>
+<body>
+    <div class="rain" id="rain"></div>
+    
+    <div class="container">
+        <h1>RAPZZ HOSTING PAYMENT GATEWAY</h1>
+        
+        <div class="note">
+            <strong>NOTE:</strong> WAJIB SERTAKAN BUKTI TRANSFER SETIAP PEMBAYARAN
+        </div>
+        
+        <div class="payment-method">
+            <h2>DANA</h2>
+            <div class="payment-number"> 083153574617</div>
+            <p>Gunakan DANA untuk pembayaran cepat dan mudah.</p>
+        </div>
+        
+        <div class="payment-method">
+            <h2>GOPAY</h2>
+            <div class="payment-number">083153574617</div>
+            <p>Gunakan GOPAY untuk kemudahan transaksi.</p>
+        </div>
+        
+        <div class="payment-method">
+            <h2>QRIS (Untuk Non-Premium)</h2>
+            <p class="blink">JIKA BELUM PREMIUM MINTA QRIS KE ADMIN</p>
+            <div style="background-color: white; padding: 20px; text-align: center;">
+                <!-- Placeholder untuk QR Code -->
+                <div style="width: 200px; height: 200px; margin: 0 auto; background-color: #eee; display: flex; align-items: center; justify-content: center;">
+                    [QR CODE HERE]
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>ALL PAYMENT RAPZZ HOSTING | © 2025 ZRILXPLOIT</p>
+        </div>
+    </div>
+    
+    <script>
+        // Create rain effect
+        function createRain() {
+            const rainContainer = document.getElementById('rain');
+            const dropsCount = 100;
+            
+            for (let i = 0; i < dropsCount; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('drop');
+                
+                // Random position
+                const left = Math.random() * 100;
+                const height = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 2 + 1;
+                
+                drop.style.left = `${left}%`;
+                drop.style.height = `${height}px`;
+                drop.style.animationDelay = `${delay}s`;
+                drop.style.animationDuration = `${duration}s`;
+                
+                rainContainer.appendChild(drop);
+            }
+        }
+        
+        // Typing effect for title
+        function typeTitle() {
+            const title = document.querySelector('h1');
+            const text = title.textContent;
+            title.textContent = '';
+            title.classList.add('typing');
+            
+            setTimeout(() => {
+                title.textContent = text;
+                title.classList.remove('typing');
+            }, 3500);
+        }
+        
+        // Initialize effects
+        window.onload = function() {
+            createRain();
+            typeTitle();
+            
+            // Re-type title every 10 seconds
+            setInterval(typeTitle, 10000);
+        };
+    </script>
+</body>
+</html>
